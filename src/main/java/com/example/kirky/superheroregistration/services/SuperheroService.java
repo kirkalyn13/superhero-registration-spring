@@ -28,5 +28,15 @@ public class SuperheroService {
             throw new IllegalStateException("Alias taken");
         }
         superheroRepository.save(superhero);
+        System.out.println("Registered New Enhanced.");
     }
+    public void deleteRegistered(Long superheroId) {
+        boolean exists = superheroRepository.existsById(superheroId);
+        if(!exists){
+            throw new IllegalStateException("Enhanced number: " + superheroId + " does not exist.");
+        }
+        superheroRepository.deleteById(superheroId);
+        System.out.println("Removed Enhanced number: " + superheroId);
+    }
+
 }

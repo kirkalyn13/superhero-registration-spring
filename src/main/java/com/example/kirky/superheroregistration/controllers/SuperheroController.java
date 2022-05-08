@@ -23,8 +23,13 @@ public class SuperheroController {
     }
 
     @PostMapping
-    public void registerNewStudent(@RequestBody Superhero superhero){
+    public void addRegistered(@RequestBody Superhero superhero){
         superheroService.addRegistered(superhero);
-        System.out.println("Registered New Enhanced.");
+
+    }
+
+    @DeleteMapping(path = "{superheroId}")
+    public void deleteRegistered(@PathVariable("superheroId") Long superheroId){
+        superheroService.deleteRegistered(superheroId);
     }
 }
