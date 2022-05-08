@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class SuperheroService {
@@ -18,5 +19,14 @@ public class SuperheroService {
 
     public List<Superhero> getRegistered(){
         return superheroRepository.findAll();
+    }
+
+    public void addRegistered(Superhero superhero) {
+        //Check if Alias is already taken.
+        Optional<Superhero> superheroOptional = superheroRepository.findStudentByAlias(superhero.getAlias());
+        if(superheroOptional.isPresent()){
+            throw new IllegalStateException("Alias taken");
+        }
+        superheroRepository.save(superhero);
     }
 }

@@ -3,9 +3,7 @@ package com.example.kirky.superheroregistration.controllers;
 import com.example.kirky.superheroregistration.model.Superhero;
 import com.example.kirky.superheroregistration.services.SuperheroService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,5 +20,11 @@ public class SuperheroController {
     @GetMapping
     public List<Superhero> getRegistered(){
         return superheroService.getRegistered();
+    }
+
+    @PostMapping
+    public void registerNewStudent(@RequestBody Superhero superhero){
+        superheroService.addRegistered(superhero);
+        System.out.println("Registered New Enhanced.");
     }
 }
